@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GigHR – Flexible Gig Marketplace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body { margin:0; font-family:Arial, sans-serif; background:#f7f7f7; }
+    header { background:#111; color:#fff; padding:15px 25px; display:flex; justify-content:space-between; align-items:center; }
+    header .logo { font-size:26px; font-weight:bold; }
+    nav button {
+        background:none; border:none; color:#fff; margin-left:20px;
+        font-size:16px; cursor:pointer;
+    }
+    nav button:hover { text-decoration:underline; }
+
+    .page { display:none; padding:40px; }
+    .active { display:block; }
+
+    h1 { margin-top:0; }
+    .hero { background:#fff; padding:60px; border-radius:10px; }
+    .btn {
+        background:#007bff; color:#fff; padding:12px 20px;
+        border:none; border-radius:5px; cursor:pointer; font-size:16px;
+    }
+    .btn-outline {
+        background:none; border:2px solid #007bff; color:#007bff;
+        padding:10px 18px; border-radius:5px; cursor:pointer;
+    }
+    .section-box {
+        background:#fff; padding:25px; margin:20px 0; border-radius:8px;
+    }
+    input, textarea, select {
+        width:100%; padding:10px; margin:10px 0 20px 0;
+        border:1px solid #ccc; border-radius:5px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">GigHR</div>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('talent')">For Talent</button>
+        <button onclick="showPage('employers')">For Employers</button>
+        <button onclick="showPage('browse')">Browse Gigs</button>
+        <button onclick="showPage('quickresume')">Quick Resume</button>
+        <button onclick="showPage('postgig')">Post a Gig</button>
+        <button onclick="showPage('how')">How It Works</button>
+        <button onclick="showPage('pricing')">Pricing</button>
+    </nav>
+</header>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+    <div class="hero">
+        <h1>Turn your free hours into paid work.</h1>
+        <p>GigHR connects skilled professionals with flexible gigs that fit into your schedule — remote or on-site.</p>
+        <button class="btn" onclick="showPage('talent')">I'm looking for gigs</button>
+        <button class="btn-outline" onclick="showPage('employers')">I'm hiring talent</button>
+    </div>
+</div>
+
+<!-- TALENT PAGE -->
+<div id="talent" class="page">
+    <h1>For Talent</h1>
+    <div class="section-box">
+        <p>Create a Quick Resume, set your availability, and get matched with gigs that fit your free hours.</p>
+        <button class="btn" onclick="showPage('quickresume')">Create Quick Resume</button>
+    </div>
+</div>
+
+<!-- EMPLOYERS PAGE -->
+<div id="employers" class="page">
+    <h1>For Employers</h1>
+    <div class="section-box">
+        <p>Post flexible gigs, shifts, or projects and instantly match with available skilled professionals.</p>
+        <button class="btn" onclick="showPage('postgig')">Post a Gig</button>
+    </div>
+</div>
+
+<!-- BROWSE GIGS -->
+<div id="browse" class="page">
+    <h1>Browse Gigs</h1>
+    <div class="section-box">
+        <p>Search flexible gigs by skill, category, or availability.</p>
+        <input type="text" placeholder="Search gigs...">
+        <div class="section-box">
+            <h3>Weekend Customer Support Associate</h3>
+            <p>Remote • Sat–Sun • $22/hr</p>
+            <button class="btn-outline">View Details</button>
+        </div>
+        <div class="section-box">
+            <h3>Evening Graphic Designer</h3>
+            <p>Remote • 6pm–10pm • $30/hr</p>
+            <button class="btn-outline">View Details</button>
+        </div>
+    </div>
+</div>
+
+<!-- QUICK RESUME -->
+<div id="quickresume" class="page">
+    <h1>Create Your Quick Resume</h1>
+    <div class="section-box">
+        <form>
+            <input type="text" placeholder="Full Name">
+            <input type="text" placeholder="Location (City)">
+            <input type="text" placeholder="Headline (e.g., Web Developer available evenings)">
+            <input type="text" placeholder="Skills (comma separated)">
+            <textarea placeholder="Experience highlights (3–5 bullets)"></textarea>
+            <select>
+                <option>Remote only</option>
+                <option>On-site only</option>
+                <option>Remote or on-site</option>
+            </select>
+            <input type="text" placeholder="Preferred hourly rate">
+            <button class="btn">Save Quick Resume</button>
+        </form>
+    </div>
+</div>
+
+<!-- POST A GIG -->
+<div id="postgig" class="page">
+    <h1>Post a Gig</h1>
+    <div class="section-box">
+        <form>
+            <input type="text" placeholder="Gig Title">
+            <textarea placeholder="Gig Description"></textarea>
+            <select>
+                <option>Tech & IT</option>
+                <option>Creative & Design</option>
+                <option>Admin & Office</option>
+                <option>Healthcare</option>
+                <option>Trades & Labor</option>
+                <option>Events & Hospitality</option>
+            </select>
+            <input type="text" placeholder="Location (if on-site)">
+            <input type="text" placeholder="Rate (hourly or project)">
+            <button class="btn">Post Gig</button>
+        </form>
+    </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div id="how" class="page">
+    <h1>How It Works</h1>
+    <div class="section-box">
+        <h3>For Talent</h3>
+        <p>1. Create your Quick Resume</p>
+        <p>2. Set your availability</p>
+        <p>3. Get matched with gigs</p>
+    </div>
+    <div class="section-box">
+        <h3>For Employers</h3>
+        <p>1. Post a gig</p>
+        <p>2. Review matched talent</p>
+        <p>3. Hire and schedule</p>
+    </div>
+</div>
+
+<!-- PRICING -->
+<div id="pricing" class="page">
+    <h1>Pricing</h1>
+    <div class="section-box">
+        <h3>Free for Talent</h3>
+        <p>Create a Quick Resume and apply to gigs at no cost.</p>
+    </div>
+    <div class="section-box">
+        <h3>Employers</h3>
+        <p>Pay per gig post or choose a monthly subscription.</p>
+    </div>
+</div>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId).classList.add('active');
+}
+</script>
+
+</body>
+</html>
