@@ -99,21 +99,44 @@
     </div>
 </div>
 
-<!-- QUICK RESUME -->
+<!-- UPDATED QUICK RESUME SECTION -->
 <div id="quickresume" class="page">
     <h1>Create Your Quick Resume</h1>
     <div class="section-box">
         <form>
+
             <input type="text" placeholder="Full Name">
-            <input type="text" placeholder="Location (City)">
             <input type="text" placeholder="Headline (e.g., Web Developer available evenings)">
             <input type="text" placeholder="Skills (comma separated)">
             <textarea placeholder="Experience highlights (3–5 bullets)"></textarea>
+
+            <h3>Select Your Location</h3>
+
+            <label for="country">Country</label>
+            <select id="country" onchange="updateStates()">
+                <option value="">Select a country</option>
+                <option value="usa">United States</option>
+                <option value="canada">Canada</option>
+                <option value="uk">United Kingdom</option>
+                <option value="australia">Australia</option>
+            </select>
+
+            <label for="state">State / Province</label>
+            <select id="state" onchange="updateCities()">
+                <option value="">Select a state or province</option>
+            </select>
+
+            <label for="city">City</label>
+            <select id="city">
+                <option value="">Select a city</option>
+            </select>
+
             <select>
                 <option>Remote only</option>
                 <option>On-site only</option>
                 <option>Remote or on-site</option>
             </select>
+
             <input type="text" placeholder="Preferred hourly rate">
             <button class="btn">Save Quick Resume</button>
         </form>
@@ -176,6 +199,72 @@
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
+}
+
+const states = {
+    usa: ["California", "New York", "Texas", "Florida", "Illinois"],
+    canada: ["Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba"],
+    uk: ["England", "Scotland", "Wales", "Northern Ireland"],
+    australia: ["New South Wales", "Victoria", "Queensland", "Tasmania", "Western Australia"]
+};
+
+const cities = {
+    California: ["Los Angeles", "San Francisco", "San Diego"],
+    "New York": ["New York City", "Buffalo", "Rochester"],
+    Texas: ["Houston", "Dallas", "Austin"],
+    Florida: ["Miami", "Orlando", "Tampa"],
+    Illinois: ["Chicago", "Springfield", "Naperville"],
+
+    Ontario: ["Toronto", "Ottawa", "Hamilton"],
+    Quebec: ["Montreal", "Quebec City", "Laval"],
+    "British Columbia": ["Vancouver", "Victoria", "Kelowna"],
+    Alberta: ["Calgary", "Edmonton", "Red Deer"],
+    Manitoba: ["Winnipeg", "Brandon", "Steinbach"],
+
+    England: ["London", "Manchester", "Liverpool"],
+    Scotland: ["Edinburgh", "Glasgow", "Aberdeen"],
+    Wales: ["Cardiff", "Swansea", "Newport"],
+    "Northern Ireland": ["Belfast", "Derry", "Lisburn"],
+
+    "New South Wales": ["Sydney", "Newcastle", "Wollongong"],
+    Victoria: ["Melbourne", "Geelong", "Ballarat"],
+    Queensland: ["Brisbane", "Gold Coast", "Cairns"],
+    Tasmania: ["Hobart", "Launceston", "Devonport"],
+    "Western Australia": ["Perth", "Fremantle", "Bunbury"]
+};
+
+function updateStates() {
+    const country = document.getElementById("country").value;
+    const stateDropdown = document.getElementById("state");
+    const cityDropdown = document.getElementById("city");
+
+    stateDropdown.innerHTML = "<option value=''>Select a state or province</option>";
+    cityDropdown.innerHTML = "<option value=''>Select a city</option>";
+
+    if (states[country]) {
+        states[country].forEach(state => {
+            const option = document.createElement("option");
+            option.value = state;
+            option.textContent = state;
+            stateDropdown.appendChild(option);
+        });
+    }
+}
+
+function updateCities() {
+    const state = document.getElementById("state").value;
+    const cityDropdown = document.getElementById("city");
+
+    cityDropdown.innerHTML = "<option value=''>Select a city</option>";
+
+    if (cities[state]) {
+        cities[state].forEach(city => {
+            const option = document.createElement("option");
+            option.value = city;
+            option.textContent = city;
+            cityDropdown.appendChild(option);
+        });
+    }
 }
 </script>
 
