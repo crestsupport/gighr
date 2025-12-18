@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quick Resume – GigHR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <a href="index.html" aria-label="GigHR Home">
+      <svg width="140" height="45" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="42" font-family="Arial, sans-serif" font-size="40" font-weight="500" fill="#ffffff">
+          Gig
+        </text>
+        <text x="92" y="42" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#007BFF">
+          Hr
+        </text>
+      </svg>
+    </a>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="talent.html">For Talent</a>
+    <a href="employers.html">For Employers</a>
+    <a href="browse.html">Browse Gigs</a>
+    <a href="quick-resume.html">Quick Resume</a>
+    <a href="post-gig.html">Post a Gig</a>
+    <a href="how-it-works.html">How It Works</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="products.html">Products</a>
+    <a href="solutions.html">Solutions</a>
+  </nav>
+</header>
+
+<main class="page-container">
+  <h1>Create Your Quick Resume</h1>
+  <div class="section-box">
+    <form>
+      <input type="text" placeholder="Full Name">
+      <input type="text" placeholder="Headline (e.g., Web Developer available evenings)">
+      <input type="text" placeholder="Skills (comma separated)">
+      <textarea placeholder="Experience highlights (3–5 bullets)"></textarea>
+
+      <h3>Select Your Location</h3>
+
+      <label for="country">Country</label>
+      <select id="country" onchange="updateStates()">
+        <option value="">Select a country</option>
+        <option value="usa">United States</option>
+        <option value="canada">Canada</option>
+        <option value="uk">United Kingdom</option>
+        <option value="australia">Australia</option>
+      </select>
+
+      <label for="state">State / Province</label>
+      <select id="state" onchange="updateCities()">
+        <option value="">Select a state or province</option>
+      </select>
+
+      <label for="city">City</label>
+      <select id="city">
+        <option value="">Select a city</option>
+      </select>
+
+      <select>
+        <option>Remote only</option>
+        <option>On-site only</option>
+        <option>Remote or on-site</option>
+      </select>
+
+      <input type="text" placeholder="Preferred hourly rate">
+      <button type="button" class="btn">Save Quick Resume</button>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>For Job Seekers</h4>
+      <ul>
+        <li><a href="browse.html">Jobs</a></li>
+        <li><a href="talent.html">Career Advice</a></li>
+        <li><a href="employers.html">Company Profiles</a></li>
+        <li><a href="quick-resume.html">Help</a></li>
+      </ul>
+      <p class="footer-text">
+        GigHR empowers skilled professionals around the world to find flexible work that fits their life.
+        Upload your CV or Quick Resume, set your availability, and get discovered by employers looking for
+        talent on demand. No long applications. No geographic barriers. Just opportunities that match your
+        skills and free hours.
+      </p>
+    </div>
+
+    <div class="footer-column">
+      <h4>For Employers</h4>
+      <ul>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="terms-of-use.html">Terms of Use</a></li>
+        <li><a href="privacy-center.html">Privacy Center <span class="updated-tag">UPDATED!</span></a></li>
+        <li><a href="security-center.html">Security Center</a></li>
+      </ul>
+      <p class="footer-text">
+        Hire globally, flexibly, and efficiently. GigHR connects you with verified professionals who are
+        ready to work when you need them — whether for a single shift, a short project, or recurring
+        part‑time support. Reduce friction, speed up hiring, and access talent across every industry.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 GigHR. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const states = {
+  usa: ["California", "New York", "Texas", "Florida", "Illinois"],
+  canada: ["Ontario", "Quebec", "British Columbia", "Alberta", "Manitoba"],
+  uk: ["England", "Scotland", "Wales", "Northern Ireland"],
+  australia: ["New South Wales", "Victoria", "Queensland", "Tasmania", "Western Australia"]
+};
+
+const cities = {
+  California: ["Los Angeles", "San Francisco", "San Diego"],
+  "New York": ["New York City", "Buffalo", "Rochester"],
+  Texas: ["Houston", "Dallas", "Austin"],
+  Florida: ["Miami", "Orlando", "Tampa"],
+  Illinois: ["Chicago", "Springfield", "Naperville"],
+
+  Ontario: ["Toronto", "Ottawa", "Hamilton"],
+  Quebec: ["Montreal", "Quebec City", "Laval"],
+  "British Columbia": ["Vancouver", "Victoria", "Kelowna"],
+  Alberta: ["Calgary", "Edmonton", "Red Deer"],
+  Manitoba: ["Winnipeg", "Brandon", "Steinbach"],
+
+  England: ["London", "Manchester", "Liverpool"],
+  Scotland: ["Edinburgh", "Glasgow", "Aberdeen"],
+  Wales: ["Cardiff", "Swansea", "Newport"],
+  "Northern Ireland": ["Belfast", "Derry", "Lisburn"],
+
+  "New South Wales": ["Sydney", "Newcastle", "Wollongong"],
+  Victoria: ["Melbourne", "Geelong", "Ballarat"],
+  Queensland: ["Brisbane", "Gold Coast", "Cairns"],
+  Tasmania: ["Hobart", "Launceston", "Devonport"],
+  "Western Australia": ["Perth", "Fremantle", "Bunbury"]
+};
+
+function updateStates() {
+  const country = document.getElementById("country").value;
+  const stateDropdown = document.getElementById("state");
+  const cityDropdown = document.getElementById("city");
+
+  stateDropdown.innerHTML = "<option value=''>Select a state or province</option>";
+  cityDropdown.innerHTML = "<option value=''>Select a city</option>";
+
+  if (states[country]) {
+    states[country].forEach(state => {
+      const option = document.createElement("option");
+      option.value = state;
+      option.textContent = state;
+      stateDropdown.appendChild(option);
+    });
+  }
+}
+
+function updateCities() {
+  const state = document.getElementById("state").value;
+  const cityDropdown = document.getElementById("city");
+
+  cityDropdown.innerHTML = "<option value=''>Select a city</option>";
+
+  if (cities[state]) {
+    cities[state].forEach(city => {
+      const option = document.createElement("option");
+      option.value = city;
+      option.textContent = city;
+      cityDropdown.appendChild(option);
+    });
+  }
+}
+</script>
+
+</body>
+</html>
